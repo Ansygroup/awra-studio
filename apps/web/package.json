@@ -1,5 +1,5 @@
 {
-  "name": "@awra/web",
+  "name": "awra-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.11.3",
-    "next": "^15.0.3",
+    "next": "15.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
