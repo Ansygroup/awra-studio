@@ -9,8 +9,6 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@awra/config": "workspace:*",
-    "@awra/types": "workspace:*",
     "@clerk/nextjs": "^5.11.3",
     "next": "^15.0.3",
     "react": "^19.0.0",
