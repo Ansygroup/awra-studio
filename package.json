@@ -1,0 +1,26 @@
+{
+  "name": "awra-studio",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "dev": "turbo dev",
+    "dev:web": "pnpm --filter @awra/web dev",
+    "dev:api": "pnpm --filter @awra/api dev",
+    "dev:worker": "pnpm --filter @awra/api dev:worker",
+    "migrate:deploy": "pnpm --filter @awra/db exec prisma migrate deploy --schema=./prisma/schema.prisma",
+    "build": "turbo build",
+    "typecheck": "turbo typecheck",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/unit/**/*.test.ts",
+    "test:ci": "pnpm typecheck && pnpm test:unit"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^10.4.9",
+    "@playwright/test": "^1.54.1",
+    "@types/supertest": "^6.0.3",
+    "supertest": "^7.1.1",
+    "turbo": "^2.0.12",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}
