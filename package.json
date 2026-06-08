@@ -1,8 +1,1 @@
-{
-  "name": "awra-studio",
-  "private": true,
-  "scripts": {
-    "build": "npm run build --prefix apps/web",
-    "dev": "npm run dev --prefix apps/web"
-  }
-}
+{"name":"awra-studio","private":true}
