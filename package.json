@@ -2,8 +2,7 @@
   "name": "awra-studio",
   "private": true,
   "scripts": {
-    "build": "cd apps/web && npm run build",
-    "dev": "cd apps/web && npm run dev",
-    "typecheck": "cd apps/web && npm run typecheck"
+    "build": "npm run build --prefix apps/web",
+    "dev": "npm run dev --prefix apps/web"
   }
 }
