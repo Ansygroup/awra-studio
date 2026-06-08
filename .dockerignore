@@ -1,0 +1,12 @@
+node_modules
+.pnpm-store
+.turbo
+.next
+dist
+coverage
+.git
+.env
+.env.*
+apps/api/storage
+build
+coverage
