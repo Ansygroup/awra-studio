@@ -1,0 +1,105 @@
+services:
+  # ── API (NestJS) ──────────────────────────────────────────────────────────
+  - type: web
+    name: awra-api
+    runtime: docker
+    dockerfilePath: ./apps/api/Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "4000"
+      - key: AUTH_PROVIDER
+        value: starter
+      - key: NEXT_PUBLIC_AUTH_PROVIDER
+        value: starter
+      - key: ASSET_STORAGE_DRIVER
+        value: local
+      - key: PLAYWRIGHT_ENABLED
+        value: "false"
+      - key: PLAYWRIGHT_HEADLESS
+        value: "true"
+      - key: CRAWL_TIMEOUT_MS
+        value: "20000"
+      - key: CRAWL_BROWSER_TIMEOUT_MS
+        value: "45000"
+      - key: OPENAI_MODEL_AGENT
+        value: gpt-4.1-mini
+      - key: OPENAI_MODEL_SYNTHESIS
+        value: gpt-4.1-mini
+      # ── secrets — fill these in Render Dashboard ──
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: AUTH_SESSION_SECRET
+        sync: false
+      - key: ASSET_SIGNING_SECRET
+        sync: false
+      - key: INTERNAL_SERVICE_TOKEN
+        sync: false
+      - key: APP_URL
+        sync: false
+      # ── optional ──
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_PRICE_PRO_MONTHLY
+        sync: false
+      - key: STRIPE_PRICE_AGENCY_MONTHLY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: INVITATION_EMAIL_FROM
+        value: "AWRA Studio <hello@awra.app>"
+      - key: CLERK_SECRET_KEY
+        sync: false
+      - key: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+        sync: false
+
+  # ── Worker (BullMQ) ───────────────────────────────────────────────────────
+  - type: worker
+    name: awra-worker
+    runtime: docker
+    dockerfilePath: ./apps/api/Dockerfile
+    dockerContext: .
+    plan: free
+    startCommand: node apps/api/dist/worker.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: AUTH_PROVIDER
+        value: starter
+      - key: ASSET_STORAGE_DRIVER
+        value: local
+      - key: PLAYWRIGHT_ENABLED
+        value: "false"
+      - key: OPENAI_MODEL_AGENT
+        value: gpt-4.1-mini
+      - key: OPENAI_MODEL_SYNTHESIS
+        value: gpt-4.1-mini
+      # ── secrets — fill in Render Dashboard ──
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ASSET_SIGNING_SECRET
+        sync: false
+      - key: INTERNAL_SERVICE_TOKEN
+        sync: false
+      - key: APP_URL
+        sync: false
+
+databases:
+  - name: awra-postgres
+    plan: free
+    databaseName: awra
+    user: awra
