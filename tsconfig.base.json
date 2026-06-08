@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@awra/db": ["packages/db/src/index.ts"],
+      "@awra/types": ["packages/types/src/index.ts"],
+      "@awra/config": ["packages/config/src/index.ts"],
+      "@awra/prompts": ["packages/prompts/src/index.ts"]
+    }
+  }
+}
